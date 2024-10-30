@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X,Linkedin, Mail, Youtube, Instagram, Phone, ArrowRight, Calendar, MapPin, User, BookOpen, ChevronLeft, ChevronRight, Globe, Facebook } from 'lucide-react';
+import { Menu, X, Linkedin, Mail, Youtube, Instagram, Phone, ArrowRight, Calendar, MapPin, User, BookOpen, ChevronLeft, ChevronRight, Globe, Facebook } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from "../assets/Images/Logo.png";
 import { XMarkIcon } from "@heroicons/react/24/solid";
@@ -8,8 +8,13 @@ const Homepage = () => {
 
   const [email, setEmail] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+
+  const [activeSection, setActiveSection] = useState('home');
+  
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+
 
   const achievementImages = [
     Logo,
@@ -17,16 +22,40 @@ const Homepage = () => {
     "/api/placeholder/800/600"
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+  
+      const homeElement = document.getElementById('hero');
+      const featuresElement = document.getElementById('features');
+      const aboutElement = document.getElementById('about');
+      const achievementsElement = document.getElementById('achievements');
+      const TestimonialsElement = document.getElementById('testimonials');
+  
+      if (window.scrollY == 0||window.scrollY < home.offsetTop) {
+        setActiveSection("home");
+      } else if (window.scrollY < featuresElement.offsetTop) {
+        setActiveSection("features");
+      } else if (window.scrollY < aboutElement.offsetTop) {
+        setActiveSection("about");
+      } else if (window.scrollY < achievementsElement.offsetTop)  {
+        setActiveSection("achievements");
+      } else if (window.scrollY < TestimonialsElement.offsetTop)  {
+        setActiveSection("testimonials");
+      }
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+  
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [activeSection, scrollPosition]);
+
+
+
+
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [meetingDetails, setMeetingDetails] = useState({
-    title: "Upcoming Class Meeting",
-    time: "2024-10-31 10:00 AM", // Add your meeting time here
-    link: "https://meet.google.com/example-meet-link" // Replace with actual link
-  });
 
   const handlePopupToggle = () => setIsPopupOpen(!isPopupOpen);
-
-
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -91,17 +120,11 @@ const Homepage = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#hero" className={`text-sm font-medium transition-colors ${activeSection === 'hero' ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`} >Home</a>
-              <a href="#about" className={`text-sm font-medium transition-colors ${activeSection === 'about' ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`}>About</a>
-              <a href="#features" className={`text-sm font-medium transition-colors ${activeSection === 'features' ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`}>Features</a>
-              <a href="#classes" className={`text-sm font-medium transition-colors ${activeSection === 'classes' ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`}>Classes</a>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium"
-              >
-                Get Started
-              </motion.button>
+              <a href="#home" className={`text-sm font-medium transition-colors ${activeSection === 'home' ? 'text-blue-600' : 'text-white hover:text-blue-600'}`} >Home</a>
+              <a href="#features" className={`text-sm font-medium transition-colors ${activeSection === 'features' ? 'text-blue-600' : 'text-white hover:text-blue-600'}`}>Features</a>
+              <a href="#about" className={`text-sm font-medium transition-colors ${activeSection === 'about' ? 'text-blue-600' : 'text-white hover:text-blue-600'}`}>About</a>
+              <a href="#achievements" className={`text-sm font-medium transition-colors ${activeSection === 'achievements' ? 'text-blue-600' : 'text-white hover:text-blue-600'}`}>Achievements</a>
+              <a href="#testimonials" className={`text-sm font-medium transition-colors ${activeSection === 'testimonials' ? 'text-blue-600' : 'text-white hover:text-blue-600'}`}>Testimonials</a>
             </div>
 
             {/* Mobile menu button */}
@@ -127,9 +150,9 @@ const Homepage = () => {
             >
               <div className="px-4 pt-2 pb-3 space-y-1">
                 <a href="#hero" className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600">Home</a>
-                <a href="#about" className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600">About</a>
                 <a href="#features" className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600">Features</a>
-                <a href="#classes" className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600">Classes</a>
+                <a href="#about" className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600">About</a>
+                <a href="#achievements" className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-blue-600">Classes</a>
               </div>
             </motion.div>
           )}
@@ -137,7 +160,7 @@ const Homepage = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+      <section id="home" className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -177,33 +200,33 @@ const Homepage = () => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                 >
-                <motion.div
-  className="relative bg-gray-100 rounded-lg shadow-lg overflow-hidden w-full max-w-3xl mx-4"
-  initial={{ scale: 0.8, opacity: 0 }}
-  animate={{ scale: 1, opacity: 1 }}
-  exit={{ scale: 0.8, opacity: 0 }}
-  transition={{ type: "spring", stiffness: 300, damping: 25 }}
-  style={{ paddingTop: "2rem" }} // Adjust top padding to prevent overlap
->
-  <button
-    onClick={() => setIsPopupOpen(false)}
-    className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 focus:outline-none transition-colors z-10" // Add z-index
-  >
-    <XMarkIcon className="w-6 h-6" />
-  </button>
+                  <motion.div
+                    className="relative bg-gray-100 rounded-lg shadow-lg overflow-hidden w-full max-w-3xl mx-4"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.8, opacity: 0 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                    style={{ paddingTop: "2rem" }} // Adjust top padding to prevent overlap
+                  >
+                    <button
+                      onClick={() => setIsPopupOpen(false)}
+                      className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 focus:outline-none transition-colors z-10" // Add z-index
+                    >
+                      <XMarkIcon className="w-6 h-6" />
+                    </button>
 
-  <iframe
-    src="https://calendar.google.com/calendar/embed?src=dhanazx1%40gmail.com&ctz=Asia%2FKolkata"
-    style={{ border: '0', paddingTop: '1rem' }} // Additional padding if needed
-    width="100%"
-    height="600"
-    frameBorder="0"
-    scrolling="no"
-    allowFullScreen
-    referrerPolicy="no-referrer-when-downgrade"
-    className="rounded-b-lg"
-  />
-</motion.div>
+                    <iframe
+                      src="https://calendar.google.com/calendar/embed?src=dhanazx1%40gmail.com&ctz=Asia%2FKolkata"
+                      style={{ border: '0', paddingTop: '1rem' }} // Additional padding if needed
+                      width="100%"
+                      height="600"
+                      frameBorder="0"
+                      scrolling="no"
+                      allowFullScreen
+                      referrerPolicy="no-referrer-when-downgrade"
+                      className="rounded-b-lg"
+                    />
+                  </motion.div>
 
                 </motion.div>
               )}
@@ -262,7 +285,8 @@ const Homepage = () => {
       </section>
 
       {/* Expertise Section */}
-      <section className="py-20 bg-white">
+      
+      <section id="features" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -322,7 +346,15 @@ const Homepage = () => {
           </div>
         </div>
       </section>
-      <section id="features" className="py-16 bg-gray-50">
+
+
+
+
+
+
+
+      
+      <section id="about" className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="text-3xl text-blue-600 font-bold mb-4">Why Choose Lakshmi Academy?</h2>
@@ -382,7 +414,7 @@ const Homepage = () => {
 
 
       {/* Classes Section */}
-      <section className="py-20 bg-white">
+      <section id="achievements" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -444,7 +476,7 @@ const Homepage = () => {
 
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-white">
+      <section id="testimonials" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -525,13 +557,13 @@ const Homepage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center space-y-8">
             <div className="flex flex-wrap justify-center space-x-4">
-              <a href="https://www.instagram.com/ramesh2024972?igsh=MWt5d2l2eGMxNHRibw%3D%3D" target="_blank"  className="text-white hover:text-blue-500 transition-colors">
+              <a href="https://www.instagram.com/ramesh2024972?igsh=MWt5d2l2eGMxNHRibw%3D%3D" target="_blank" className="text-white hover:text-blue-500 transition-colors">
                 <Instagram className="w-6 h-6" />
               </a>
-              <a href="https://www.facebook.com/profile.php?id=61560770363790&mibextid=ZbWKwL"  target="_blank" className="text-white hover:text-blue-500 transition-colors">
+              <a href="https://www.facebook.com/profile.php?id=61560770363790&mibextid=ZbWKwL" target="_blank" className="text-white hover:text-blue-500 transition-colors">
                 <Facebook className="w-6 h-6" />
               </a>
-              <a href="https://www.youtube.com/@TRAMESHKUMAR/community"  target="_blank" className="text-white hover:text-blue-500 transition-colors">
+              <a href="https://www.youtube.com/@TRAMESHKUMAR/community" target="_blank" className="text-white hover:text-blue-500 transition-colors">
                 <Youtube className="w-6 h-6" />
               </a>
             </div>
