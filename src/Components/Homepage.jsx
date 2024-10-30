@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Mail, Youtube, Linkedin, Instagram, Phone, ArrowRight, Calendar, MapPin, User, BookOpen, ChevronLeft, ChevronRight, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from "../assets/Images/Logo.png";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
 const Homepage = () => {
 
@@ -153,51 +154,60 @@ const Homepage = () => {
               </p>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <p className="text-black text-lg">Don’t miss our upcoming session. Click below to view details and join.</p>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={handlePopupToggle}
-                    className="mt-6 bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-medium inline-flex items-center gap-2"
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handlePopupToggle}
+                >
+                  <button
+                    onClick={() => setIsPopupOpen(true)}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                   >
-                    View Meeting <Calendar className="w-5 h-5" />
-                  </motion.button>
-                </div>
-                
+                    Open Calendar
+                  </button>
+                </motion.button>
+              </div>
+
             </motion.div>
             <AnimatePresence>
-                {isPopupOpen && (
-                  <motion.div
-                    className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999]"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    <motion.div
-                      className="bg-white rounded-lg p-8 w-full max-w-md"
-                      initial={{ y: -50, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ y: 50, opacity: 0 }}
-                    >
-                      <div className="flex justify-between items-center mb-4">
-                        <h3 className="text-xl font-semibold text-blue-600">{meetingDetails.title}</h3>
-                        <button onClick={handlePopupToggle}>
-                          <X className="w-6 h-6 text-gray-600" />
-                        </button>
-                      </div>
-                      <p className="text-gray-700 mb-4">Time: {meetingDetails.time}</p>
-                      <a
-                        href={meetingDetails.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-blue-600 text-white px-4 py-2 rounded-full inline-block"
-                      >
-                        Join Google Meet
-                      </a>
-                    </motion.div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {isPopupOpen && (
+                <motion.div
+                  className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999]"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                <motion.div
+  className="relative bg-gray-100 rounded-lg shadow-lg overflow-hidden w-full max-w-3xl mx-4"
+  initial={{ scale: 0.8, opacity: 0 }}
+  animate={{ scale: 1, opacity: 1 }}
+  exit={{ scale: 0.8, opacity: 0 }}
+  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+  style={{ paddingTop: "2rem" }} // Adjust top padding to prevent overlap
+>
+  <button
+    onClick={() => setIsPopupOpen(false)}
+    className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 focus:outline-none transition-colors z-10" // Add z-index
+  >
+    <XMarkIcon className="w-6 h-6" />
+  </button>
 
+  <iframe
+    src="https://calendar.google.com/calendar/embed?src=dhanazx1%40gmail.com&ctz=Asia%2FKolkata"
+    style={{ border: '0', paddingTop: '1rem' }} // Additional padding if needed
+    width="100%"
+    height="600"
+    frameBorder="0"
+    scrolling="no"
+    allowFullScreen
+    referrerPolicy="no-referrer-when-downgrade"
+    className="rounded-b-lg"
+  />
+</motion.div>
+
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             <motion.div
               initial={{ opacity: 0, x: 50 }}
@@ -270,9 +280,9 @@ const Homepage = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-             className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
+              className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
             >
-              
+
               <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
                 <Globe className="w-6 h-6 text-blue-400" />
               </div>
@@ -285,7 +295,7 @@ const Homepage = () => {
               animate={{ opacity: 1, y: 0 }}
               className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
             >
-             <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+              <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
                 <Youtube className="w-6 h-6 text-blue-400" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-2">International Trade Strategies</h3>
@@ -300,7 +310,7 @@ const Homepage = () => {
               animate={{ opacity: 1, y: 0 }}
               className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
             >
-               <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+              <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
                 <Linkedin className="w-6 h-6 text-blue-400" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-2">Digital Marketing for Exporters</h3>
@@ -326,9 +336,9 @@ const Homepage = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-             className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
+              className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
             >
-                <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+              <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
                 <User className="w-6 h-6 text-blue-400" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-4">Expert Instruction</h3>
@@ -341,7 +351,7 @@ const Homepage = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-                className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
+              className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
             >
               <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
                 <BookOpen className="w-6 h-6 text-blue-400" />
@@ -356,9 +366,9 @@ const Homepage = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-                 className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
+              className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
             >
-               <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+              <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
                 <Calendar className="w-6 h-6 text-blue-400" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-4">Flexible Scheduling</h3>
@@ -373,64 +383,64 @@ const Homepage = () => {
 
       {/* Classes Section */}
       <section className="py-20 bg-white">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="text-center mb-16"
-    >
-      <h2 className="text-4xl font-bold text-blue-600 mb-4">Our Achievements</h2>
-      <p className="text-black text-lg max-w-2xl mx-auto">
-        Recognized excellence in international trade education and consulting
-      </p>
-    </motion.div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-blue-600 mb-4">Our Achievements</h2>
+            <p className="text-black text-lg max-w-2xl mx-auto">
+              Recognized excellence in international trade education and consulting
+            </p>
+          </motion.div>
 
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="grid md:grid-cols-2 gap-12"
-    >
-      <div className="space-y-6">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700"
-        >
-          <h3 className="text-xl font-semibold text-white mb-4">U TV Coimbatore Feature</h3>
-          <p className="text-gray-400">Live program host sharing expert insights on export business (2015)</p>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700"
-        >
-          <h3 className="text-xl font-semibold text-white mb-4">"Velaan Vaniga Ulagam" Column</h3>
-          <p className="text-gray-400">Regular contributor since 2021, sharing expertise through "Yetrumathi Cheivathu Eppadi?"</p>
-        </motion.div>
-      </div>
-      
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="grid md:grid-cols-2 gap-12"
+          >
+            <div className="space-y-6">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700"
+              >
+                <h3 className="text-xl font-semibold text-white mb-4">U TV Coimbatore Feature</h3>
+                <p className="text-gray-400">Live program host sharing expert insights on export business (2015)</p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700"
+              >
+                <h3 className="text-xl font-semibold text-white mb-4">"Velaan Vaniga Ulagam" Column</h3>
+                <p className="text-gray-400">Regular contributor since 2021, sharing expertise through "Yetrumathi Cheivathu Eppadi?"</p>
+              </motion.div>
+            </div>
 
-      <div className="space-y-6">
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700"
-        >
-          <h3 className="text-xl font-semibold text-white mb-4">Global Reach</h3>
-          <p className="text-gray-400">Participants from USA, Australia, Germany, France, Malaysia, and Singapore</p>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700"
-        >
-          <h3 className="text-xl font-semibold text-white mb-4">Export Excellence</h3>
-          <p className="text-gray-400">Successfully exporting premium products to America, England, and Malaysia since 2010</p>
-        </motion.div>
-      </div>
-    </motion.div>
-  </div>
-</section>
+
+            <div className="space-y-6">
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700"
+              >
+                <h3 className="text-xl font-semibold text-white mb-4">Global Reach</h3>
+                <p className="text-gray-400">Participants from USA, Australia, Germany, France, Malaysia, and Singapore</p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700"
+              >
+                <h3 className="text-xl font-semibold text-white mb-4">Export Excellence</h3>
+                <p className="text-gray-400">Successfully exporting premium products to America, England, and Malaysia since 2010</p>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
 
       {/* Testimonials Section */}
@@ -473,7 +483,7 @@ const Homepage = () => {
           </div>
         </div>
       </section>
-      
+
       <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
