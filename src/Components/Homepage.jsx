@@ -61,7 +61,7 @@ const Homepage = () => {
     <div className="min-h-screen bg-white">
       {/* <nav className="fixed top-0 left-0 z-50 w-full p-6 bg-gradient-to-br from-gray-900 to-gray-800 border-b border-gray-700 rounded-2xl backdrop-blur-md"> */}
 
-      <nav className="fixed w-full backdrop-blur-md z-50 border-b ">
+      <nav className="fixed w-full  bg-gradient-to-b from-black to-gray-900   backdrop-blur-md z-50 border-b ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <motion.div
@@ -74,7 +74,7 @@ const Homepage = () => {
                 alt="Lakshmi Academy Logo"
                 className="h-8 w-8" // Adjust the height and width as needed
               />
-              <span className="text-xl font-bold text-blue-600">
+              <span className="text-xl font-bold text-white">
                 Lakshmi Academy
               </span>
             </motion.div>
@@ -217,14 +217,14 @@ const Homepage = () => {
       </section>
 
       {/* Expertise Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-white mb-4">Featured Programs</h2>
+            <h2 className="text-4xl font-bold text-black mb-4">Featured Programs</h2>
             <p className="text-blue-600 text-lg max-w-2xl mx-auto">
               Comprehensive export training programs designed for various professionals
             </p>
@@ -336,7 +336,7 @@ const Homepage = () => {
       </section>
 
       {/* Classes Section */}
-      <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -344,7 +344,7 @@ const Homepage = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-blue-600 mb-4">Our Achievements</h2>
-            <p className="text-white text-lg max-w-2xl mx-auto">
+            <p className="text-black text-lg max-w-2xl mx-auto">
               Recognized excellence in international trade education and consulting
             </p>
           </motion.div>
