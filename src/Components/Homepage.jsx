@@ -22,6 +22,16 @@ const Homepage = () => {
     "/api/placeholder/800/600"
   ];
 
+  const handleSubmit = () => {
+    const whatsappNumber = '919952697196'; // Replace with the target WhatsApp number, including country code
+    const message = `Hello, here is the email: ${email}`;
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappURL, '_blank'); // Opens WhatsApp in a new tab
+  };
+
+
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
@@ -581,20 +591,23 @@ const Homepage = () => {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-xl mx-auto"
           >
-            <div className="space-y-4">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="w-full px-6 py-3 rounded-full bg-white/5 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
-              />
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-full text-lg font-medium"
-              >
-                Get Started
-              </motion.button>
-            </div>
+              <div className="space-y-4">
+      <input
+        type="email"
+        placeholder="Enter your email"
+        className="w-full px-6 py-3 rounded-full bg-white/5 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={handleSubmit}
+        className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-full text-lg font-medium"
+      >
+        Get Started
+      </motion.button>
+    </div>
           </motion.form>
         </div>
       </section>
