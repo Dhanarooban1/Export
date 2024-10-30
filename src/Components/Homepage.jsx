@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Mail, Youtube, Linkedin, Instagram, Phone, ArrowRight, Calendar, MapPin, User, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Menu, X, Mail, Youtube, Linkedin, Instagram, Phone, ArrowRight, Calendar, MapPin, User, BookOpen, ChevronLeft, ChevronRight, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from "../assets/Images/Logo.png";
 
@@ -10,64 +10,81 @@ const Homepage = () => {
   const [activeSection, setActiveSection] = useState('hero');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    const achievementImages = [
+  const achievementImages = [
     Logo,
-        "/api/placeholder/800/600",
-        "/api/placeholder/800/600"
-    ];
+    "/api/placeholder/800/600",
+    "/api/placeholder/800/600"
+  ];
 
 
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentImageIndex((prev) => 
-        prev === achievementImages.length - 1? 0 : prev + 1
+      setCurrentImageIndex((prev) =>
+        prev === achievementImages.length - 1 ? 0 : prev + 1
       );
     }, 5000);
     return () => clearInterval(timer);
   }, []);
 
   const handlePrevImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === 0? achievementImages.length - 1 : prev - 1
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? achievementImages.length - 1 : prev - 1
     );
   };
 
   const handleNextImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === achievementImages.length - 1? 0 : prev + 1
+    setCurrentImageIndex((prev) =>
+      prev === achievementImages.length - 1 ? 0 : prev + 1
     );
   };
 
 
+
+  const testimonials = [
+    {
+      name: "John Smith",
+      role: "CEO, Global Exports Inc",
+      content: "The training provided by T. Rameshkumar transformed our export business.",
+      image: "/api/placeholder/100/100"
+    },
+    {
+      name: "Sarah Johnson",
+      role: "Entrepreneur",
+      content: "Thanks to Lakshmi Academy, I successfully launched my export business.",
+      image: "/api/placeholder/100/100"
+    }
+  ];
+
+
   return (
-    <div className="min-h-screen bg-black">
-      <nav className="fixed w-full bg-white backdrop-blur-md z-50 border-b border-gray-100">
+    <div className="min-h-screen bg-white">
+      {/* <nav className="fixed top-0 left-0 z-50 w-full p-6 bg-gradient-to-br from-gray-900 to-gray-800 border-b border-gray-700 rounded-2xl backdrop-blur-md"> */}
+
+      <nav className="fixed w-full backdrop-blur-md z-50 border-b ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-          <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="flex items-center space-x-3" 
-      >
-        <img 
-          src={Logo} // replace with the path to your logo image
-          alt="Lakshmi Academy Logo"
-          className="h-8 w-8" // Adjust the height and width as needed
-        />
-        
-     
-        <span className="text-xl font-bold text-blue-600">
-          Lakshmi Academy
-        </span>
-      </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex items-center space-x-3"
+            >
+              <img
+                src={Logo} // replace with the path to your logo image
+                alt="Lakshmi Academy Logo"
+                className="h-8 w-8" // Adjust the height and width as needed
+              />
+              <span className="text-xl font-bold text-blue-600">
+                Lakshmi Academy
+              </span>
+            </motion.div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#hero" className={`text-sm font-medium transition-colors ${activeSection === 'hero'? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`} >Home</a>
-              <a href="#about" className={`text-sm font-medium transition-colors ${activeSection === 'about'? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`}>About</a>
-              <a href="#features" className={`text-sm font-medium transition-colors ${activeSection === 'features'? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`}>Features</a>
-              <a href="#classes" className={`text-sm font-medium transition-colors ${activeSection === 'classes'? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`}>Classes</a>
+              <a href="#hero" className={`text-sm font-medium transition-colors ${activeSection === 'hero' ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`} >Home</a>
+              <a href="#about" className={`text-sm font-medium transition-colors ${activeSection === 'about' ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`}>About</a>
+              <a href="#features" className={`text-sm font-medium transition-colors ${activeSection === 'features' ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`}>Features</a>
+              <a href="#classes" className={`text-sm font-medium transition-colors ${activeSection === 'classes' ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`}>Classes</a>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -83,7 +100,7 @@ const Homepage = () => {
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-gray-600 hover:text-blue-600 transition-colors"
               >
-                {isMenuOpen?<X className="w-6 h-6" />:<Menu className="w-6 h-6" />}
+                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
           </div>
@@ -119,11 +136,11 @@ const Homepage = () => {
               transition={{ duration: 0.5 }}
               className="space-y-8"
             >
-              <h1 className="text-5xl sm:text-6xl font-bold text-white leading-tight">
+              <h1 className="text-5xl sm:text-6xl font-bold text-black leading-tight">
                 Master the Art of <span className="text-blue-600">International Trade</span>
               </h1>
-              <p className="text-xl text-gray-100">
-                Transform your career with expert-led export training from industry veterans.
+              <p className="text-xl text-black">
+                Join T. Rameshkumar's expert-led export training program with 15+ years of international trade excellence.
               </p>
               <div className="flex flex-wrap gap-4">
                 <motion.button
@@ -136,173 +153,135 @@ const Homepage = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="border-2 border-gray-200 text-gray-100 px-8 py-3 rounded-full text-lg font-medium"
+                  className="border-2 border-gray-200 text-black px-8 py-3 rounded-full text-lg font-medium"
                 >
-                    
+
                   View Courses
                 </motion.button>
               </div>
             </motion.div>
-            
-            {/* Achievement Carousel */}
-           
 
-<motion.div
-  initial={{ opacity: 0, x: 50 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 0.5 }}
-  className="relative rounded-2xl overflow-hidden shadow-2xl"
->
-  <div className="relative aspect-[4/4]">
-    <AnimatePresence mode="wait">
-      <motion.img
-        key={currentImageIndex}
-        src={achievementImages[currentImageIndex]}
-        alt={`Achievement ${currentImageIndex + 1}`}
-      className="w-full h-full object-fit object-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-      />
-    </AnimatePresence>
-    
-    {/* Navigation Buttons */}
-    <button
-      onClick={handlePrevImage}
-      className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg hover:bg-white transition-colors"
-    >
-      <ChevronLeft className="w-6 h-6 text-gray-800" />
-    </button>
-    <button
-      onClick={handleNextImage}
-      className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg hover:bg-white transition-colors"
-    >
-      <ChevronRight className="w-6 h-6 text-gray-800" />
-    </button>
-    
-    {/* Dots Indicator */}
-    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-      {achievementImages.map((_, index) => (
-        <button
-          key={index}
-          onClick={() => setCurrentImageIndex(index)}
-          className={`w-2 h-2 rounded-full transition-colors ${
-            index === currentImageIndex ? 'bg-blue-600' : 'bg-white/60'
-          }`}
-        />
-      ))}
-    </div>
-  </div>
-</motion.div>
+            {/* Achievement Carousel */}
+
+
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="relative rounded-2xl overflow-hidden shadow-2xl"
+            >
+              <div className="relative aspect-[4/4]">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={currentImageIndex}
+                    src={achievementImages[currentImageIndex]}
+                    alt={`Achievement ${currentImageIndex + 1}`}
+                    className="w-full h-full object-fit object-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                </AnimatePresence>
+
+                {/* Navigation Buttons */}
+                <button
+                  onClick={handlePrevImage}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg hover:bg-white transition-colors"
+                >
+                  <ChevronLeft className="w-6 h-6 text-gray-800" />
+                </button>
+                <button
+                  onClick={handleNextImage}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg hover:bg-white transition-colors"
+                >
+                  <ChevronRight className="w-6 h-6 text-gray-800" />
+                </button>
+
+                {/* Dots Indicator */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                  {achievementImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`w-2 h-2 rounded-full transition-colors ${index === currentImageIndex ? 'bg-blue-600' : 'bg-white/60'
+                        }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
 
           </div>
         </div>
       </section>
 
       {/* Expertise Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Our Expertise</h2>
-            <p className="text-gray-600">
-              Since 2021, I've been sharing my knowledge in the "Yetrumathi Cheivathu Eppadi?" column
-              of "Velaan Vaniga Ulagam" magazine, answering public questions and offering insights on export business.
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-white mb-4">Featured Programs</h2>
+            <p className="text-blue-600 text-lg max-w-2xl mx-auto">
+              Comprehensive export training programs designed for various professionals
             </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Experience Card */}
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Featured Program Cards */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all"
+             className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
             >
-              <div className="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center text-blue-600 mb-4">
-                <User className="w-6 h-6" />
+              
+              <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+                <Globe className="w-6 h-6 text-blue-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">15+ Years Experience</h3>
-              <p className="text-gray-600">
-                Proven track record in international trade consulting and training.
+              <h3 className="text-xl font-semibold text-white mb-2">Export Documentation</h3>
+              <p className="text-gray-400">Master international trade documentation and compliance</p>
+            </motion.div>
+            {/* Add more program cards similarly */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
+            >
+             <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+                <Youtube className="w-6 h-6 text-blue-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">International Trade Strategies</h3>
+              <p className="text-gray-400">
+                Develop effective strategies for success in global markets.
               </p>
             </motion.div>
 
-            {/* Achievement Card */}
+            {/* Course Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all"
+              className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
             >
-              <div className="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center text-blue-600 mb-4">
-                <BookOpen className="w-6 h-6" />
+               <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+                <Linkedin className="w-6 h-6 text-blue-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Certified Trainer</h3>
-              <p className="text-gray-600">
-                Specialized knowledge in export procedures and regulations.
+              <h3 className="text-xl font-semibold text-white mb-2">Digital Marketing for Exporters</h3>
+              <p className="text-gray-400">
+                Learn how to leverage digital platforms for effective export marketing.
               </p>
             </motion.div>
 
-            {/* Award Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all"
-            >
-              <div className="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center text-blue-600 mb-4">
-                <Calendar className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Best Export Consultant</h3>
-              <p className="text-gray-600">
-                Recognized for outstanding contributions to the field of international trade.
-              </p>
-            </motion.div>
           </div>
         </div>
       </section>
-
-      {/* About Section */}
-      <section id="about" className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">About Lakshmi Academy</h2>
-            <p className="text-gray-600">
-              Lakshmi Academy is dedicated to empowering individuals and businesses in the realm of international trade. Our comprehensive training programs are designed to equip learners with the knowledge and skills necessary to succeed in the global marketplace.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* About Text */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="space-y-4"
-            >
-              <h3 className="text-2xl font-semibold">Our Mission</h3>
-              <p className="text-gray-600">
-                To bridge the gap between local businesses and global markets through innovative education and practical training.
-              </p>
-            </motion.div>
-
-            {/* About Image */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="relative rounded-lg overflow-hidden shadow-lg"
-            >
-              <img src="/api/placeholder/800/600" alt="Academy Image" className="w-full h-full object-cover" />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
       <section id="features" className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Why Choose Lakshmi Academy?</h2>
-            <p className="text-gray-600">
+            <h2 className="text-3xl text-blue-600 font-bold mb-4">Why Choose Lakshmi Academy?</h2>
+            <p className="text-black">
               Discover why our academy stands out as a leader in international trade education.
             </p>
           </div>
@@ -312,13 +291,13 @@ const Homepage = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all"
+             className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
             >
-              <div className="mb-4">
-                <User className="w-8 h-8 text-blue-600 mb-2" />
+                <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+                <User className="w-6 h-6 text-blue-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Expert Instruction</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold text-white mb-4">Expert Instruction</h3>
+              <p className="text-gray-400">
                 Learn from industry veterans with extensive experience in international trade.
               </p>
             </motion.div>
@@ -327,13 +306,13 @@ const Homepage = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all"
+                className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
             >
-              <div className="mb-4">
-                <BookOpen className="w-8 h-8 text-blue-600 mb-2" />
+              <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+                <BookOpen className="w-6 h-6 text-blue-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Comprehensive Curriculum</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold text-white mb-4" >Comprehensive Curriculum</h3>
+              <p className="text-gray-400">
                 Our courses cover all aspects of international trade, from basics to advanced strategies.
               </p>
             </motion.div>
@@ -342,13 +321,13 @@ const Homepage = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all"
+                 className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
             >
-              <div className="mb-4">
-                <Calendar className="w-8 h-8 text-blue-600 mb-2" />
+               <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
+                <Calendar className="w-6 h-6 text-blue-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Flexible Scheduling</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold text-white mb-4">Flexible Scheduling</h3>
+              <p className="text-gray-400">
                 Choose from various course formats to fit your schedule and learning style.
               </p>
             </motion.div>
@@ -357,61 +336,126 @@ const Homepage = () => {
       </section>
 
       {/* Classes Section */}
-      <section id="classes" className="py-16 bg-white">
+      <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Our Courses</h2>
-            <p className="text-gray-600">
-              Explore our comprehensive range of classes designed to enhance your skills in international trade.
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-blue-600 mb-4">Our Achievements</h2>
+            <p className="text-white text-lg max-w-2xl mx-auto">
+              Recognized excellence in international trade education and consulting
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Course Card */}
+          <div className="grid md:grid-cols-2 gap-12">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="space-y-6"
             >
-              <div className="mb-4">
-                <Mail className="w-8 h-8 text-blue-600 mb-2" />
+              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700">
+                <h3 className="text-xl font-semibold text-white mb-4">U TV Coimbatore Feature</h3>
+                <p className="text-gray-400">Live program host sharing expert insights on export business (2015)</p>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Export Documentation</h3>
-              <p className="text-gray-600">
-                Master the art of preparing accurate and compliant export documents.
-              </p>
+              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700">
+                <h3 className="text-xl font-semibold text-white mb-4">"Velaan Vaniga Ulagam" Column</h3>
+                <p className="text-gray-400">Regular contributor since 2021, sharing expertise through "Yetrumathi Cheivathu Eppadi?"</p>
+              </div>
             </motion.div>
 
-            {/* Course Card */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="space-y-6"
             >
-              <div className="mb-4">
-                <Youtube className="w-8 h-8 text-blue-600 mb-2" />
+              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700">
+                <h3 className="text-xl font-semibold text-white mb-4">Global Reach</h3>
+                <p className="text-gray-400">Training participants from USA, Australia, Germany, France, Malaysia, and Singapore</p>
               </div>
-              <h3 className="text-xl font-semibold mb-2">International Trade Strategies</h3>
-              <p className="text-gray-600">
-                Develop effective strategies for success in global markets.
-              </p>
-            </motion.div>
-
-            {/* Course Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all"
-            >
-              <div className="mb-4">
-                <Linkedin className="w-8 h-8 text-blue-600 mb-2" />
+              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700">
+                <h3 className="text-xl font-semibold text-white mb-4">Export Excellence</h3>
+                <p className="text-gray-400">Successfully exporting premium products to America, England, and Malaysia since 2010</p>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Digital Marketing for Exporters</h3>
-              <p className="text-gray-600">
-                Learn how to leverage digital platforms for effective export marketing.
-              </p>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-blue-600 mb-4">Student Success Stories</h2>
+            <p className="text- text-lg max-w-2xl mx-auto">
+              Hear from our graduates who have transformed their export business journey
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700"
+              >
+                <p className="text-gray-300 mb-6">{testimonial.content}</p>
+                <div className="flex items-center gap-4">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full"
+                  />
+                  <div>
+                    <h4 className="text-white font-medium">{testimonial.name}</h4>
+                    <p className="text-gray-400">{testimonial.role}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-white mb-4">Start Your Journey Today</h2>
+            <p className="text-blue-600 text-lg max-w-2xl mx-auto">
+              Take the first step towards international trade success
+            </p>
+          </motion.div>
+
+          <motion.form
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-xl mx-auto"
+          >
+            <div className="space-y-4">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="w-full px-6 py-3 rounded-full bg-white/5 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+              />
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-full text-lg font-medium"
+              >
+                Get Started
+              </motion.button>
+            </div>
+          </motion.form>
         </div>
       </section>
 
