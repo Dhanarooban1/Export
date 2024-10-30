@@ -16,6 +16,15 @@ const Homepage = () => {
     "/api/placeholder/800/600"
   ];
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [meetingDetails, setMeetingDetails] = useState({
+    title: "Upcoming Class Meeting",
+    time: "2024-10-31 10:00 AM", // Add your meeting time here
+    link: "https://meet.google.com/example-meet-link" // Replace with actual link
+  });
+
+  const handlePopupToggle = () => setIsPopupOpen(!isPopupOpen);
+
 
 
   useEffect(() => {
@@ -142,26 +151,52 @@ const Homepage = () => {
               <p className="text-xl text-black">
                 Join T. Rameshkumar's expert-led export training program with 15+ years of international trade excellence.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-medium inline-flex items-center gap-2"
-                >
-                  Start Learning <ArrowRight className="w-5 h-5" />
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="border-2 border-gray-200 text-black px-8 py-3 rounded-full text-lg font-medium"
-                >
-
-                  View Courses
-                </motion.button>
-              </div>
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <p className="text-black text-lg">Don’t miss our upcoming session. Click below to view details and join.</p>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={handlePopupToggle}
+                    className="mt-6 bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-medium inline-flex items-center gap-2"
+                  >
+                    View Meeting <Calendar className="w-5 h-5" />
+                  </motion.button>
+                </div>
+                
             </motion.div>
-
-            {/* Achievement Carousel */}
+            <AnimatePresence>
+                {isPopupOpen && (
+                  <motion.div
+                    className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999]"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <motion.div
+                      className="bg-white rounded-lg p-8 w-full max-w-md"
+                      initial={{ y: -50, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: 50, opacity: 0 }}
+                    >
+                      <div className="flex justify-between items-center mb-4">
+                        <h3 className="text-xl font-semibold text-blue-600">{meetingDetails.title}</h3>
+                        <button onClick={handlePopupToggle}>
+                          <X className="w-6 h-6 text-gray-600" />
+                        </button>
+                      </div>
+                      <p className="text-gray-700 mb-4">Time: {meetingDetails.time}</p>
+                      <a
+                        href={meetingDetails.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-blue-600 text-white px-4 py-2 rounded-full inline-block"
+                      >
+                        Join Google Meet
+                      </a>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
 
             <motion.div
@@ -335,53 +370,68 @@ const Homepage = () => {
         </div>
       </section>
 
+
       {/* Classes Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-blue-600 mb-4">Our Achievements</h2>
-            <p className="text-black text-lg max-w-2xl mx-auto">
-              Recognized excellence in international trade education and consulting
-            </p>
-          </motion.div>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="text-center mb-16"
+    >
+      <h2 className="text-4xl font-bold text-blue-600 mb-4">Our Achievements</h2>
+      <p className="text-black text-lg max-w-2xl mx-auto">
+        Recognized excellence in international trade education and consulting
+      </p>
+    </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="space-y-6"
-            >
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700">
-                <h3 className="text-xl font-semibold text-white mb-4">U TV Coimbatore Feature</h3>
-                <p className="text-gray-400">Live program host sharing expert insights on export business (2015)</p>
-              </div>
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700">
-                <h3 className="text-xl font-semibold text-white mb-4">"Velaan Vaniga Ulagam" Column</h3>
-                <p className="text-gray-400">Regular contributor since 2021, sharing expertise through "Yetrumathi Cheivathu Eppadi?"</p>
-              </div>
-            </motion.div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="grid md:grid-cols-2 gap-12"
+    >
+      <div className="space-y-6">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700"
+        >
+          <h3 className="text-xl font-semibold text-white mb-4">U TV Coimbatore Feature</h3>
+          <p className="text-gray-400">Live program host sharing expert insights on export business (2015)</p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700"
+        >
+          <h3 className="text-xl font-semibold text-white mb-4">"Velaan Vaniga Ulagam" Column</h3>
+          <p className="text-gray-400">Regular contributor since 2021, sharing expertise through "Yetrumathi Cheivathu Eppadi?"</p>
+        </motion.div>
+      </div>
+      
 
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="space-y-6"
-            >
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700">
-                <h3 className="text-xl font-semibold text-white mb-4">Global Reach</h3>
-                <p className="text-gray-400">Training participants from USA, Australia, Germany, France, Malaysia, and Singapore</p>
-              </div>
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700">
-                <h3 className="text-xl font-semibold text-white mb-4">Export Excellence</h3>
-                <p className="text-gray-400">Successfully exporting premium products to America, England, and Malaysia since 2010</p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <div className="space-y-6">
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700"
+        >
+          <h3 className="text-xl font-semibold text-white mb-4">Global Reach</h3>
+          <p className="text-gray-400">Participants from USA, Australia, Germany, France, Malaysia, and Singapore</p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-6 border border-gray-700"
+        >
+          <h3 className="text-xl font-semibold text-white mb-4">Export Excellence</h3>
+          <p className="text-gray-400">Successfully exporting premium products to America, England, and Malaysia since 2010</p>
+        </motion.div>
+      </div>
+    </motion.div>
+  </div>
+</section>
+
 
       {/* Testimonials Section */}
       <section className="py-20 bg-white">
@@ -423,6 +473,7 @@ const Homepage = () => {
           </div>
         </div>
       </section>
+      
       <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
