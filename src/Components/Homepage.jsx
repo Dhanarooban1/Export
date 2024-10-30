@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Linkedin, Mail, Youtube, Instagram, Phone, ArrowRight, Calendar, MapPin, User, BookOpen, ChevronLeft, ChevronRight, Globe, Facebook } from 'lucide-react';
+import { Menu, X, Linkedin, Mail, Youtube, Instagram, Phone, ArrowRight, Calendar, MapPin, User, BookOpen, ChevronLeft, ChevronRight, Globe, Facebook ,} from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from "../assets/Images/Logo.png";
 import { XMarkIcon } from "@heroicons/react/24/solid";
@@ -10,7 +10,7 @@ const Homepage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [activeSection, setActiveSection] = useState('home');
-  
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -25,28 +25,28 @@ const Homepage = () => {
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
-  
+
       const homeElement = document.getElementById('hero');
       const featuresElement = document.getElementById('features');
       const aboutElement = document.getElementById('about');
       const achievementsElement = document.getElementById('achievements');
       const TestimonialsElement = document.getElementById('testimonials');
-  
-      if (window.scrollY == 0||window.scrollY < home.offsetTop) {
+
+      if (window.scrollY == 0 || window.scrollY < home.offsetTop) {
         setActiveSection("home");
       } else if (window.scrollY < featuresElement.offsetTop) {
         setActiveSection("features");
       } else if (window.scrollY < aboutElement.offsetTop) {
         setActiveSection("about");
-      } else if (window.scrollY < achievementsElement.offsetTop)  {
+      } else if (window.scrollY < achievementsElement.offsetTop) {
         setActiveSection("achievements");
-      } else if (window.scrollY < TestimonialsElement.offsetTop)  {
+      } else if (window.scrollY < TestimonialsElement.offsetTop) {
         setActiveSection("testimonials");
       }
     };
-  
+
     window.addEventListener("scroll", handleScroll);
-  
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, [activeSection, scrollPosition]);
 
@@ -98,7 +98,7 @@ const Homepage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* <nav className="fixed top-0 left-0 z-50 w-full p-6 bg-gradient-to-br from-gray-900 to-gray-800 border-b border-gray-700 rounded-2xl backdrop-blur-md"> */}
+
 
       <nav className="fixed w-full  bg-gradient-to-b from-black to-gray-900   backdrop-blur-md z-50 border-b ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -136,7 +136,9 @@ const Homepage = () => {
                 {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
+
           </div>
+
         </div>
 
         {/* Mobile Navigation */}
@@ -157,7 +159,53 @@ const Homepage = () => {
             </motion.div>
           )}
         </AnimatePresence>
+        
       </nav>
+      <div className="fixed right-0 top-20 flex flex-col space-y-4 p-2 bg-black border-l border-gray-700 z-40">
+      <a 
+        href="https://www.youtube.com/@TRAMESHKUMAR" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="text-white cursor-pointer"
+      >
+        <Youtube />
+      </a>
+      <a 
+        href="https://www.instagram.com/ramesh2024972?igsh=MWt5d2l2eGMxNHRibw%3D%3D" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="text-white cursor-pointer"
+      >
+        <Instagram />
+      </a>
+      <a 
+        href="https://www.facebook.com/p/Export-Training-Classes-61560770363790/?mibextid=ZbWKwL" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="text-white cursor-pointer"
+      >
+        <Facebook />
+      </a>
+      <a 
+        href="https://wa.me/919952697196" // WhatsApp link with phone number
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="text-white cursor-pointer"
+      >
+        <Phone />
+      </a>
+      <a 
+        href="mailto:lakshmiexportcompany@gmail.com" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="text-white cursor-pointer"
+      >
+        <Mail />
+      </a>
+
+</div>
+
+
 
       {/* Hero Section */}
       <section id="home" className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
@@ -175,21 +223,20 @@ const Homepage = () => {
               <p className="text-xl text-black">
                 Join T. Rameshkumar's expert-led export training program with 15+ years of international trade excellence.
               </p>
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <p className="text-black text-lg">Don’t miss our upcoming session. Click below to view details and join.</p>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handlePopupToggle}
-                >
-                  <button
-                    onClick={() => setIsPopupOpen(true)}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                  >
-                    Open Calendar
-                  </button>
-                </motion.button>
-              </div>
+              <p className="text-xl text-black">
+                Don’t miss our upcoming session. Click below to view details and join.
+              </p>
+
+              <button
+                onClick={() => setIsPopupOpen(true)}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Open Calendar
+              </button>
+
+
+
+
 
             </motion.div>
             <AnimatePresence>
@@ -285,7 +332,7 @@ const Homepage = () => {
       </section>
 
       {/* Expertise Section */}
-      
+
       <section id="features" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -353,7 +400,7 @@ const Homepage = () => {
 
 
 
-      
+
       <section id="about" className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-12">
