@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Mail, Youtube, Linkedin, Instagram, Phone, ArrowRight, Calendar, MapPin, User, BookOpen, ChevronLeft, ChevronRight, Globe } from 'lucide-react';
+import { Menu, X,Linkedin, Mail, Youtube, Instagram, Phone, ArrowRight, Calendar, MapPin, User, BookOpen, ChevronLeft, ChevronRight, Globe, Facebook } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from "../assets/Images/Logo.png";
 import { XMarkIcon } from "@heroicons/react/24/solid";
@@ -525,13 +525,13 @@ const Homepage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center space-y-8">
             <div className="flex flex-wrap justify-center space-x-4">
-              <a href="#" className="text-white hover:text-blue-500 transition-colors">
+              <a href="https://www.instagram.com/ramesh2024972?igsh=MWt5d2l2eGMxNHRibw%3D%3D" target="_blank"  className="text-white hover:text-blue-500 transition-colors">
                 <Instagram className="w-6 h-6" />
               </a>
-              <a href="#" className="text-white hover:text-blue-500 transition-colors">
-                <Linkedin className="w-6 h-6" />
+              <a href="https://www.facebook.com/profile.php?id=61560770363790&mibextid=ZbWKwL"  target="_blank" className="text-white hover:text-blue-500 transition-colors">
+                <Facebook className="w-6 h-6" />
               </a>
-              <a href="#" className="text-white hover:text-blue-500 transition-colors">
+              <a href="https://www.youtube.com/@TRAMESHKUMAR/community"  target="_blank" className="text-white hover:text-blue-500 transition-colors">
                 <Youtube className="w-6 h-6" />
               </a>
             </div>
