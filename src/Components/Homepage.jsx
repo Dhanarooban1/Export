@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Linkedin, Mail, Youtube, Instagram, Phone, ArrowRight, Calendar, MapPin, User, BookOpen, ChevronLeft, ChevronRight, Globe, Facebook ,} from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from "../assets/Images/Logo.png";
+import Image1 from "../assets/Images/Image1.jpg";
+import Image2 from "../assets/Images/Image2.jpg";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
 const Homepage = () => {
@@ -18,8 +20,8 @@ const Homepage = () => {
 
   const achievementImages = [
     Logo,
-    "/api/placeholder/800/600",
-    "/api/placeholder/800/600"
+    Image1,
+    Image2,
   ];
 
   const handleSubmit = () => {
@@ -124,7 +126,7 @@ const Homepage = () => {
                 className="h-8 w-8" // Adjust the height and width as needed
               />
               <span className="text-xl font-bold text-white">
-                Lakshmi Academy
+              Lakshmi Export Training Center
               </span>
             </motion.div>
 
@@ -231,9 +233,10 @@ const Homepage = () => {
                 Master the Art of <span className="text-blue-600">International Trade</span>
               </h1>
               <p className="text-xl text-black">
-                Join T. Rameshkumar's expert-led export training program with 15+ years of international trade excellence.
+                Join T. Rameshkumar's expert-led export Training Center with 15+ years of international trade excellence.
               </p>
               <p className="text-xl text-black">
+              
                 Don’t miss our upcoming session. Click below to view details and join.
               </p>
 
