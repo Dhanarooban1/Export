@@ -5,6 +5,7 @@ import Logo from "../assets/Images/Logo.png";
 import Image1 from "../assets/Images/Image1.jpg";
 import Image2 from "../assets/Images/Image2.jpg";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import Logo2 from "../assets/Images/Logo2.png";
 
 const Homepage = () => {
 
@@ -121,9 +122,9 @@ const Homepage = () => {
               className="flex items-center space-x-3"
             >
               <img
-                src={Logo} // replace with the path to your logo image
+                src={Logo2} // replace with the path to your logo image
                 alt="Lakshmi Academy Logo"
-                className="h-8 w-8" // Adjust the height and width as needed
+                className="h-20 w-100" // Adjust the height and width as needed
               />
               <span className="text-xl font-bold text-white">
               Lakshmi Export Training Center
@@ -276,7 +277,7 @@ const Homepage = () => {
                     </button>
 
                     <iframe
-                      src="https://calendar.google.com/calendar/embed?src=dhanazx1%40gmail.com&ctz=Asia%2FKolkata"
+                      src="https://calendar.google.com/calendar/embed?src=lakshmiexportcompany%40gmail.com&ctz=Asia%2FKolkata"
                       style={{ border: '0', paddingTop: '1rem' }} // Additional padding if needed
                       width="100%"
                       height="600"
