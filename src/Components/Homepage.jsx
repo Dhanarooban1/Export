@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Linkedin, Mail, Youtube, Instagram, Phone, ArrowRight, Calendar, MapPin, User, BookOpen, ChevronLeft, ChevronRight, Globe, Facebook ,} from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Menu, X, Linkedin, Mail, Youtube, Instagram, Phone, Calendar, User, BookOpen, ChevronLeft, ChevronRight, Globe, Facebook, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from "../assets/Images/Logo.png";
 import Image1 from "../assets/Images/Image1.jpg";
@@ -8,16 +8,11 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 import Logo2 from "../assets/Images/Logo2.png";
 
 const Homepage = () => {
-
   const [email, setEmail] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const [activeSection, setActiveSection] = useState('home');
-
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
   const [scrollPosition, setScrollPosition] = useState(0);
-
 
   const achievementImages = [
     Logo,
@@ -33,8 +28,6 @@ const Homepage = () => {
     window.open(whatsappURL, '_blank'); // Opens WhatsApp in a new tab
   };
 
-
-
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
@@ -45,15 +38,15 @@ const Homepage = () => {
       const achievementsElement = document.getElementById('achievements');
       const TestimonialsElement = document.getElementById('testimonials');
 
-      if (window.scrollY == 0 || window.scrollY < home.offsetTop) {
+      if (window.scrollY == 0 || window.scrollY < homeElement?.offsetTop) {
         setActiveSection("home");
-      } else if (window.scrollY < featuresElement.offsetTop) {
+      } else if (window.scrollY < featuresElement?.offsetTop) {
         setActiveSection("features");
-      } else if (window.scrollY < aboutElement.offsetTop) {
+      } else if (window.scrollY < aboutElement?.offsetTop) {
         setActiveSection("about");
-      } else if (window.scrollY < achievementsElement.offsetTop) {
+      } else if (window.scrollY < achievementsElement?.offsetTop) {
         setActiveSection("achievements");
-      } else if (window.scrollY < TestimonialsElement.offsetTop) {
+      } else if (window.scrollY < TestimonialsElement?.offsetTop) {
         setActiveSection("testimonials");
       }
     };
@@ -62,9 +55,6 @@ const Homepage = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [activeSection, scrollPosition]);
-
-
-
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -91,8 +81,6 @@ const Homepage = () => {
     );
   };
 
-
-
   const testimonials = [
     {
       name: "John Smith",
@@ -108,12 +96,9 @@ const Homepage = () => {
     }
   ];
 
-
   return (
     <div className="min-h-screen bg-white">
-
-
-      <nav className="fixed w-full  bg-gradient-to-b from-black to-gray-900   backdrop-blur-md z-50 border-b ">
+      <nav className="fixed w-full bg-gradient-to-b from-black to-gray-900 backdrop-blur-md z-50 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <motion.div
@@ -122,18 +107,18 @@ const Homepage = () => {
               className="flex items-center space-x-3"
             >
               <img
-                src={Logo2} // replace with the path to your logo image
+                src={Logo2}
                 alt="Lakshmi Academy Logo"
-                className="h-20 w-100" // Adjust the height and width as needed
+                className="h-20 w-100"
               />
               <span className="text-xl font-bold text-white">
-              Lakshmi Export Training Center
+                Lakshmi Export Training Center
               </span>
             </motion.div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#home" className={`text-sm font-medium transition-colors ${activeSection === 'home' ? 'text-blue-600' : 'text-white hover:text-blue-600'}`} >Home</a>
+              <a href="#home" className={`text-sm font-medium transition-colors ${activeSection === 'home' ? 'text-blue-600' : 'text-white hover:text-blue-600'}`}>Home</a>
               <a href="#features" className={`text-sm font-medium transition-colors ${activeSection === 'features' ? 'text-blue-600' : 'text-white hover:text-blue-600'}`}>Features</a>
               <a href="#about" className={`text-sm font-medium transition-colors ${activeSection === 'about' ? 'text-blue-600' : 'text-white hover:text-blue-600'}`}>About</a>
               <a href="#achievements" className={`text-sm font-medium transition-colors ${activeSection === 'achievements' ? 'text-blue-600' : 'text-white hover:text-blue-600'}`}>Achievements</a>
@@ -149,9 +134,7 @@ const Homepage = () => {
                 {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
-
           </div>
-
         </div>
 
         {/* Mobile Navigation */}
@@ -172,53 +155,57 @@ const Homepage = () => {
             </motion.div>
           )}
         </AnimatePresence>
-        
       </nav>
+
+      {/* Social Media Sidebar */}
       <div className="fixed right-0 top-20 flex flex-col space-y-4 p-2 bg-black border-l border-gray-700 z-40">
-      <a 
-        href="https://www.youtube.com/@TRAMESHKUMAR" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="text-white cursor-pointer"
-      >
-        <Youtube />
-      </a>
-      <a 
-        href="https://www.instagram.com/ramesh2024972?igsh=MWt5d2l2eGMxNHRibw%3D%3D" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="text-white cursor-pointer"
-      >
-        <Instagram />
-      </a>
-      <a 
-        href="https://www.facebook.com/p/Export-Training-Classes-61560770363790/?mibextid=ZbWKwL" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="text-white cursor-pointer"
-      >
-        <Facebook />
-      </a>
-      <a 
-        href="https://wa.me/919952697196" // WhatsApp link with phone number
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="text-white cursor-pointer"
-      >
-        <Phone />
-      </a>
-      <a 
-        href="mailto:lakshmiexportcompany@gmail.com" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="text-white cursor-pointer"
-      >
-        <Mail />
-      </a>
-
-</div>
-
-
+        <a 
+          href="https://www.youtube.com/@TRAMESHKUMAR" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-white hover:text-red-500 transition-colors cursor-pointer"
+        >
+          <Youtube className="w-6 h-6" />
+        </a>
+        <a 
+          href="https://www.instagram.com/ramesh2024972?igsh=MWt5d2l2eGMxNHRibw%3D%3D" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-white hover:text-pink-500 transition-colors cursor-pointer"
+        >
+          <Instagram className="w-6 h-6" />
+        </a>
+        <a 
+          href="https://www.facebook.com/p/Export-Training-Classes-61560770363790/?mibextid=ZbWKwL" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-white hover:text-blue-500 transition-colors cursor-pointer"
+        >
+          <Facebook className="w-6 h-6" />
+        </a>
+        <a 
+          href="https://wa.me/919952697196"
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-white hover:text-green-500 transition-colors cursor-pointer"
+        >
+          <MessageCircle className="w-6 h-6" />
+        </a>
+        <a 
+          href="tel:+919952697196"
+          className="text-white hover:text-blue-400 transition-colors cursor-pointer flex items-center"
+        >
+          <Phone className="w-6 h-6" />
+        </a>
+        <a 
+          href="mailto:lakshmiexportcompany@gmail.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-white hover:text-yellow-500 transition-colors cursor-pointer"
+        >
+          <Mail className="w-6 h-6" />
+        </a>
+      </div>
 
       {/* Hero Section */}
       <section id="home" className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
@@ -234,11 +221,10 @@ const Homepage = () => {
                 Master the Art of <span className="text-blue-600">International Trade</span>
               </h1>
               <p className="text-xl text-black">
-                Join T. Rameshkumar's expert-led export Training Center with 15+ years of international trade excellence.
+                Join T. Rameshkumar's expert-led export Training Center with 15+ years of international trade excellence.
               </p>
               <p className="text-xl text-black">
-              
-                Don’t miss our upcoming session. Click below to view details and join.
+                Don't miss our upcoming session. Click below to view details and join.
               </p>
 
               <button
@@ -247,12 +233,8 @@ const Homepage = () => {
               >
                 Open Calendar
               </button>
-
-
-
-
-
             </motion.div>
+
             <AnimatePresence>
               {isPopupOpen && (
                 <motion.div
@@ -267,18 +249,18 @@ const Homepage = () => {
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.8, opacity: 0 }}
                     transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                    style={{ paddingTop: "2rem" }} // Adjust top padding to prevent overlap
+                    style={{ paddingTop: "2rem" }}
                   >
                     <button
                       onClick={() => setIsPopupOpen(false)}
-                      className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 focus:outline-none transition-colors z-10" // Add z-index
+                      className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 focus:outline-none transition-colors z-10"
                     >
                       <XMarkIcon className="w-6 h-6" />
                     </button>
 
                     <iframe
                       src="https://calendar.google.com/calendar/embed?src=lakshmiexportcompany%40gmail.com&ctz=Asia%2FKolkata"
-                      style={{ border: '0', paddingTop: '1rem' }} // Additional padding if needed
+                      style={{ border: '0', paddingTop: '1rem' }}
                       width="100%"
                       height="600"
                       frameBorder="0"
@@ -288,7 +270,6 @@ const Homepage = () => {
                       className="rounded-b-lg"
                     />
                   </motion.div>
-
                 </motion.div>
               )}
             </AnimatePresence>
@@ -333,20 +314,19 @@ const Homepage = () => {
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
-                      className={`w-2 h-2 rounded-full transition-colors ${index === currentImageIndex ? 'bg-blue-600' : 'bg-white/60'
-                        }`}
+                      className={`w-2 h-2 rounded-full transition-colors ${
+                        index === currentImageIndex ? 'bg-blue-600' : 'bg-white/60'
+                      }`}
                     />
                   ))}
                 </div>
               </div>
             </motion.div>
-
           </div>
         </div>
       </section>
 
       {/* Expertise Section */}
-
       <section id="features" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -361,20 +341,18 @@ const Homepage = () => {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Featured Program Cards */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700"
             >
-
               <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
                 <Globe className="w-6 h-6 text-blue-400" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-2">Export Documentation</h3>
               <p className="text-gray-400">Master international trade documentation and compliance</p>
             </motion.div>
-            {/* Add more program cards similarly */}
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -389,7 +367,6 @@ const Homepage = () => {
               </p>
             </motion.div>
 
-            {/* Course Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -403,17 +380,9 @@ const Homepage = () => {
                 Learn how to leverage digital platforms for effective export marketing.
               </p>
             </motion.div>
-
           </div>
         </div>
       </section>
-
-
-
-
-
-
-
 
       <section id="about" className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -425,7 +394,6 @@ const Homepage = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Feature 1 */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -440,7 +408,6 @@ const Homepage = () => {
               </p>
             </motion.div>
 
-            {/* Feature 2 */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -449,13 +416,12 @@ const Homepage = () => {
               <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6">
                 <BookOpen className="w-6 h-6 text-blue-400" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-4" >Comprehensive Curriculum</h3>
+              <h3 className="text-xl font-semibold text-white mb-4">Comprehensive Curriculum</h3>
               <p className="text-gray-400">
                 Our courses cover all aspects of international trade, from basics to advanced strategies.
               </p>
             </motion.div>
 
-            {/* Feature 3 */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -472,7 +438,6 @@ const Homepage = () => {
           </div>
         </div>
       </section>
-
 
       {/* Classes Section */}
       <section id="achievements" className="py-20 bg-white">
@@ -512,7 +477,6 @@ const Homepage = () => {
               </motion.div>
             </div>
 
-
             <div className="space-y-6">
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
@@ -535,7 +499,6 @@ const Homepage = () => {
         </div>
       </section>
 
-
       {/* Testimonials Section */}
       <section id="testimonials" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -545,7 +508,7 @@ const Homepage = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-blue-600 mb-4">Student Success Stories</h2>
-            <p className="text- text-lg max-w-2xl mx-auto">
+            <p className="text-black text-lg max-w-2xl mx-auto">
               Hear from our graduates who have transformed their export business journey
             </p>
           </motion.div>
@@ -595,23 +558,23 @@ const Homepage = () => {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-xl mx-auto"
           >
-              <div className="space-y-4">
-      <input
-        type="email"
-        placeholder="Enter your email"
-        className="w-full px-6 py-3 rounded-full bg-white/5 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={handleSubmit}
-        className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-full text-lg font-medium"
-      >
-        Get Started
-      </motion.button>
-    </div>
+            <div className="space-y-4">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="w-full px-6 py-3 rounded-full bg-white/5 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleSubmit}
+                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-full text-lg font-medium"
+              >
+                Get Started
+              </motion.button>
+            </div>
           </motion.form>
         </div>
       </section>
